@@ -10,7 +10,7 @@ public class CSVWritter {
 
 	private String path;
 
-	public void generarCSV(ArrayList<Libro> coleccion, ArrayList<Integer> punteros) {
+	public void generarCSV(ArrayList<String> nombres) {
 
 		BufferedWriter bw = null;
 		try {
@@ -23,8 +23,8 @@ public class CSVWritter {
 			bw = new BufferedWriter(fw);
 
 
-			for(int i=0; i<punteros.size(); i++){
-				String linea= coleccion.get(punteros.get(i)).getNombre();
+			for(int i=0; i<nombres.size(); i++){
+				String linea= nombres.get(i);				
 				bw.write(linea);
 				bw.newLine();
 			}

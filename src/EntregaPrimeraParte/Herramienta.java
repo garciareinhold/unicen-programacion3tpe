@@ -40,12 +40,12 @@ public class Herramienta {
 			for (int j=0; j<generos.length; j++) {
 				//Me fijo en el árbol de indice si tiene el genero 
 				NodoArbol aux= indice.hasElem(generos[j]);
-				if(aux!=null) {
-					//Si lo tiene le seteo un puntero al libro en su coleccion de punteros
-					aux.setPunteroLibro(i);
+				String nombreLibro=this.coleccion.get(i).getNombre();
+				if(aux==null) {
+					indice.insert(generos[j],nombreLibro );
 				}
-				//Si no lo tiene inserto el nuevo género y le agrego su primer puntero al libro
-				else indice.insert(generos[j], i);
+				else aux.setNombreLibro(nombreLibro);
+
 			}
 		}
 	}
@@ -54,6 +54,6 @@ public class Herramienta {
 		//Me fijo si el genero que me piden existe, si es así genero el archivo de salida
 		NodoArbol genero= indice.hasElem(generoBusqueda);
 		
-		if (genero!=null) writter.generarCSV(this.coleccion, genero.getPunteroLibro());
+		if (genero!=null) writter.generarCSV(genero.getNombreLibros());
 	}
 }

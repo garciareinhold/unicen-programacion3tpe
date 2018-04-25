@@ -41,21 +41,23 @@ public class Abb{
 		else return null;
 	}
 
-	public void insert(Comparable o, int punteroLibro) {
-		this.root= insert(o, root, punteroLibro);
+	public void insert(Comparable o, String l) {
+		this.root= insert(o, root, l);
 	}
 
-	private NodoArbol insert(Comparable o, NodoArbol nodo, int punteroLibro) {
-		if(nodo==null) nodo= new NodoArbol(o);
+	private NodoArbol insert(Comparable o, NodoArbol nodo, String l) {
+		if(nodo==null) {
+			nodo= new NodoArbol(o);
+			nodo.setNombreLibro(l);
+		} 
 		else if(nodo.getInfo().compareTo(o)>0) {
-			nodo.setLeft(insert(o, 	nodo.getLeft(), punteroLibro));
+			nodo.setLeft(insert(o, 	nodo.getLeft(), l));
 		}
 		else if(nodo.getInfo().compareTo(o)<0) {
-			nodo.setRight(insert(o, nodo.getRight(), punteroLibro));
+			nodo.setRight(insert(o, nodo.getRight(), l));
 		}
 		else;
 		
-		nodo.setPunteroLibro(punteroLibro);
 		return nodo;
 	}
 	

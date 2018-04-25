@@ -6,7 +6,7 @@ import java.util.List;
 public class NodoArbol {
 	
 	Comparable info;
-	ArrayList<Integer> punterosLibros;
+	ArrayList<String> nombresLibros;
 	NodoArbol left;
 	NodoArbol right;
 	
@@ -14,7 +14,7 @@ public class NodoArbol {
 		info=o;
 		left=null;
 		right=null;
-		punterosLibros= new ArrayList<Integer>();
+		nombresLibros= new ArrayList<String>();
 	}
 	
 	public Comparable getInfo() {
@@ -41,12 +41,12 @@ public class NodoArbol {
 		this.info=info;
 	}
 	
-	public void setPunteroLibro(int l) {
-		this.punterosLibros.add(l);
+	public void setNombreLibro(String l) {
+		this.nombresLibros.add(l);
 	}
 	
-	public ArrayList<Integer> getPunteroLibro() {
-		return this.punterosLibros;
+	public ArrayList<String> getNombreLibros() {
+		return this.nombresLibros;
 	}
 	
 	
