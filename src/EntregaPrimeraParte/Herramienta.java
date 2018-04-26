@@ -1,13 +1,14 @@
 package EntregaPrimeraParte;
 
-import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedList;
 
 public class Herramienta {
 
 	private CSVReader reader;
 	private CSVWritter writter;
-	private Abb indice;
-	ArrayList <Libro> coleccion;
+	private AvlTree indice;
+	LinkedList <Libro> coleccion;
 	
 	public Herramienta() {
 		this.reader= new CSVReader();
@@ -15,7 +16,7 @@ public class Herramienta {
 	}
 	
 	public void setColeccion(String path) {
-		//Genero un arraylist de libros con la lectura del path
+		//Genero una lista vinculada de libros con la lectura del path
 		this.coleccion= reader.ReadCsv(path);
 	}
 
@@ -25,35 +26,36 @@ public class Herramienta {
 		this.writter.setPath(path);
 	}
 	
-	public Abb getIndice() {
+	public AvlTree getIndice() {
 		return this.indice;
 	}
 	
 	public void generarIndice() {
 		//Seteo el primer nodo del árbol
-		this.indice= new Abb(coleccion.get(0).getGeneros()[0]);
+		this.indice= new AvlTree(coleccion.getFirst().getGeneros()[0]);
 		//Recorro todos los libros de la coleccion
-		for(int i=0; i<coleccion.size(); i++) {
-			//Por cada libro tomo su arreglo de generos
-			String [] generos= coleccion.get(i).getGeneros();
+		Iterator<Libro> itBooks= coleccion.iterator();
+		while (itBooks.hasNext()) {
 			//Recorro todos sus generos
+			Libro libro= itBooks.next();
+			String [] generos=libro.getGeneros();
+			
 			for (int j=0; j<generos.length; j++) {
 				//Me fijo en el árbol de indice si tiene el genero 
-				NodoArbol aux= indice.hasElem(generos[j]);
-				String nombreLibro=this.coleccion.get(i).getNombre();
+				NodoAvl aux= indice.hasElem(generos[j]);
 				if(aux==null) {
-					indice.insert(generos[j],nombreLibro );
+					indice.insert(generos[j],libro );
 				}
-				else aux.setNombreLibro(nombreLibro);
+				else aux.setLibro(libro);
 
 			}
+
 		}
 	}
 	
 	public void VerLibrosXGenero(String generoBusqueda) {
 		//Me fijo si el genero que me piden existe, si es así genero el archivo de salida
-		NodoArbol genero= indice.hasElem(generoBusqueda);
-		
-		if (genero!=null) writter.generarCSV(genero.getNombreLibros());
+		NodoAvl genero= indice.hasElem(generoBusqueda);
+		if (genero!=null) writter.generarCSV(genero.getLibros());
 	}
 }

@@ -4,17 +4,18 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class CSVReader {
 
 	final static int NOMBRE= 0;
 	final static int GENERO=3;
 	
-	public ArrayList<Libro> ReadCsv(String archivo){
+	public LinkedList<Libro> ReadCsv(String archivo){
 	    
         String line = "";
         String cvsSplitBy = ",";
-        ArrayList<Libro> coleccion= new ArrayList<Libro>();
+        LinkedList<Libro> coleccion= new LinkedList<Libro>();
         int contador=0;
         
         try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {

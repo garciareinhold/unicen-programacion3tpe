@@ -5,12 +5,14 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedList;
 
 public class CSVWritter {
 
 	private String path;
 
-	public void generarCSV(ArrayList<String> nombres) {
+	public void generarCSV(LinkedList<Libro> libros) {
 
 		BufferedWriter bw = null;
 		try {
@@ -22,10 +24,10 @@ public class CSVWritter {
 			FileWriter fw = new FileWriter(file);
 			bw = new BufferedWriter(fw);
 
-
-			for(int i=0; i<nombres.size(); i++){
-				String linea= nombres.get(i);				
-				bw.write(linea);
+			Iterator<Libro> itBooks= libros.iterator();
+			
+			while(itBooks.hasNext()) {
+				bw.write(itBooks.next().getNombre());
 				bw.newLine();
 			}
 

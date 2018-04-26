@@ -1,12 +1,11 @@
 package EntregaPrimeraParte;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.LinkedList;
 
 public class NodoArbol {
 	
 	Comparable info;
-	ArrayList<String> nombresLibros;
+	LinkedList<Libro> libros;
 	NodoArbol left;
 	NodoArbol right;
 	
@@ -14,7 +13,7 @@ public class NodoArbol {
 		info=o;
 		left=null;
 		right=null;
-		nombresLibros= new ArrayList<String>();
+		libros= new LinkedList<Libro>();
 	}
 	
 	public Comparable getInfo() {
@@ -41,12 +40,12 @@ public class NodoArbol {
 		this.info=info;
 	}
 	
-	public void setNombreLibro(String l) {
-		this.nombresLibros.add(l);
+	public void setLibro(Libro l) {
+		this.libros.add(l);
 	}
 	
-	public ArrayList<String> getNombreLibros() {
-		return this.nombresLibros;
+	public LinkedList<Libro> getLibros() {
+		return this.libros;
 	}
 	
 	

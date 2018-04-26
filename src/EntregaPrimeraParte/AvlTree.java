@@ -1,17 +1,15 @@
 package EntregaPrimeraParte;
+//Arbol auto -balanceado
+public class AvlTree {
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class Abb{
-
-	NodoArbol root;
+	
+	NodoAvl root;
 	int height;
 
 
-	public Abb(Comparable o) {
+	public AvlTree(Comparable o) {
 
-		this.root= new NodoArbol(o);
+		this.root= new NodoAvl(o);
 	}
 
 	public boolean isEmpty() {
@@ -26,12 +24,12 @@ public class Abb{
 	}
 
 
-	public NodoArbol hasElem(Comparable o) {
+	public NodoAvl hasElem(Comparable o) {
 		if(!this.isEmpty()) return hasElem(this.root, o);
 		else return null;
 	}
 
-	private NodoArbol hasElem(NodoArbol rootAux, Comparable o) {
+	private NodoAvl hasElem(NodoAvl rootAux, Comparable o) {
 		if (rootAux!=null) {
 			int compare= rootAux.getInfo().compareTo(o);
 			if(compare==0) return rootAux;
@@ -45,10 +43,11 @@ public class Abb{
 		this.root= insert(o, root, l);
 	}
 
-	private NodoArbol insert(Comparable o, NodoArbol nodo, Libro l) {
+	private NodoAvl insert(Comparable o, NodoAvl nodo, Libro l) {
 		if(nodo==null) {
-			nodo= new NodoArbol(o);
+			nodo= new NodoAvl(o);
 			nodo.setLibro(l);
+			return nodo;
 		} 
 		else if(nodo.getInfo().compareTo(o)>0) {
 			nodo.setLeft(insert(o, 	nodo.getLeft(), l));
@@ -56,16 +55,15 @@ public class Abb{
 		else if(nodo.getInfo().compareTo(o)<0) {
 			nodo.setRight(insert(o, nodo.getRight(), l));
 		}
-		else;
 		
-		return nodo;
+		return nodo.balance();
 	}
 	
 	public void printPreOrder() {
 		printPreOrder(this.root);
 	}
 
-	private void printPreOrder(NodoArbol root) {
+	private void printPreOrder(NodoAvl root) {
 		if(root != null) {
 			System.out.print(root.getInfo() + "  ");
 			printPreOrder(root.getLeft());
