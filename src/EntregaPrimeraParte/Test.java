@@ -15,11 +15,18 @@ public class Test {
 		
 		Indice generos = new Indice();
 		Comparable gen = "Ficcion";
-		Comparable gen1 = "Guerra";
-		Comparable gen2 = "Bisturi";
+		
+		Comparable gen2 = "Guerra";
+		Comparable gen1 = "Warras";
+		Comparable gen4 = "Arre";
+		Comparable gen5 = "Galacticas";
 		generos.setGenero(gen);
-		generos.setGenero(gen1);
+		
 		generos.setGenero(gen2);
+		generos.setGenero(gen1); 
+		generos.setGenero(gen4);
+		generos.setGenero(gen5);
+		
 		generos.mostrarIndice();
 		
 		
