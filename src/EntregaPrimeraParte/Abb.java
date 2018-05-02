@@ -3,6 +3,7 @@ package EntregaPrimeraParte;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class Abb{
 
 	NodoArbol root;
@@ -52,23 +53,40 @@ public class Abb{
 	}
 
 	public void insert(Comparable o, Libro l) {
-		this.root= insert(o, root, l);
-	}
-
-	private NodoArbol insert(Comparable o, NodoArbol nodo, Libro l) {
-		this.nodosVisitados++;
-		if(nodo==null) {
-			nodo= new NodoArbol(o);
-			nodo.setLibro(l);
-		} 
-		else if(nodo.getInfo().compareTo(o)>0) {
-			nodo.setLeft(insert(o, 	nodo.getLeft(), l));
+		if (this.root!=null) {
+			this.insert(o, root, l);
 		}
-		else if(nodo.getInfo().compareTo(o)<0) {
-			nodo.setRight(insert(o, nodo.getRight(), l));
+		else{
+			 this.root= new NodoArbol (o);
+			 root.setLibro(l);
+			 this.nodosVisitados++;
 		}
 		
-		return nodo;
+	}
+
+	private void insert(Comparable o, NodoArbol nodo, Libro l) {
+		this.nodosVisitados++;
+		if(nodo.getInfo().compareTo(o)>0) {
+			if(nodo.getLeft()!=null){
+				this.insert(o, nodo.getLeft(), l);
+			}
+			else{
+				NodoArbol nuevo= new NodoArbol(o);
+				nodo.setLeft(nuevo);
+				nuevo.setLibro(l);
+			}
+		}
+		else if(nodo.getInfo().compareTo(o)<0) {
+			if(nodo.getRight()!=null){
+				this.insert(o, nodo.getRight(), l);
+  			}
+			else{
+				NodoArbol nuevo= new NodoArbol(o);
+				nodo.setRight(nuevo);
+				nuevo.setLibro(l);
+			}
+		}
+		
 	}
 	
 	public void printPreOrder() {

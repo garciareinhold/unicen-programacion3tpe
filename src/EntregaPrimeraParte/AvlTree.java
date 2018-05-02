@@ -51,24 +51,40 @@ public class AvlTree {
 	}
 
 	public void insert(Comparable o, Libro l) {
-		this.root= insert(o, root, l);
-	}
-
-	private NodoAvl insert(Comparable o, NodoAvl nodo, Libro l) {
-		this.nodosVisitados++;
-		if(nodo==null) {
-			nodo= new NodoAvl(o);
-			nodo.setLibro(l);
-			return nodo;
-		} 
-		else if(nodo.getInfo().compareTo(o)>0) {
-			nodo.setLeft(insert(o, 	nodo.getLeft(), l));
-		}
-		else if(nodo.getInfo().compareTo(o)<0) {
-			nodo.setRight(insert(o, nodo.getRight(), l));
+		if (this.root!=null)this.insert(o, root, l);
+		else{
+			 this.root= new NodoAvl(o);
+			 root.setLibro(l);
+			 this.nodosVisitados++;
 		}
 		
-		return nodo.balance();
+	}
+
+	private void insert(Comparable o, NodoAvl nodo, Libro l) {
+		this.nodosVisitados++;
+		if(nodo.getInfo().compareTo(o)>0) {
+			if(nodo.getLeft()!=null){
+				this.insert(o, nodo.getLeft(), l);
+			}
+			else{
+				NodoAvl nuevo= new NodoAvl(o);
+				nodo.setLeft(nuevo);
+				nuevo.setLibro(l);
+			}
+		}
+		else if(nodo.getInfo().compareTo(o)<0) {
+			if(nodo.getRight()!=null){
+				this.insert(o, nodo.getRight(), l);
+  			}
+			else{
+				NodoAvl nuevo= new NodoAvl(o);
+				nodo.setRight(nuevo);
+				nuevo.setLibro(l);
+			}
+		}
+		
+		nodo.balance();
+		
 	}
 	
 	public void printPreOrder() {

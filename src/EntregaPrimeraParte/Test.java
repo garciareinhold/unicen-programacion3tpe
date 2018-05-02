@@ -18,8 +18,8 @@ public class Test {
 		System.out.println(s.stop());
 		System.out.println(tool.getNodosVisitados());
 		tool.getIndice().printPreOrder();
-//		tool.setSalida("C:/salidas/salida1.csv");
-//		tool.VerLibrosXGenero("cine");
+		tool.setSalida("C:/salidas/salida1.csv");
+		tool.VerLibrosXGenero("cine");
 	}
 
 }
