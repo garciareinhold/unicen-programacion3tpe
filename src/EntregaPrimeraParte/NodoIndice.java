@@ -32,4 +32,13 @@ public class NodoIndice {
 		this.libros.add(libro);
 	}
 	
+	public void mostrarLibros () {
+		if (this.libros.size() != 0) {
+			for(int i=0; i<this.libros.size(); i++) {
+				System.out.println("Nombre: " + this.libros.elementAt(i).getNombre());
+			}
+			
+		}
+	}
+	
 }
