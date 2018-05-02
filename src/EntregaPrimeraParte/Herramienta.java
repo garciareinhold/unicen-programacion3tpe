@@ -34,7 +34,7 @@ public class Herramienta {
 			String[] generos = coleccion.get(i).getGeneros();
 			// Recorro todos sus generos
 			for (int j = 0; j < generos.length; j++) {
-				Comparable gen = generos[j];
+				Comparable gen = generos[j];	
 				comparaciones = comparaciones + this.indice.setGenero(gen, coleccion.get(i));
 			}
 

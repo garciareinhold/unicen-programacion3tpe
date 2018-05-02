@@ -86,6 +86,12 @@ public class Indice {
 
 	public void mostrarIndice() {
 		for (int i = 0; i < this.generos.size(); i++) {
+			System.out.println("//Genero// " + this.generos.elementAt(i).getGenero());			
+		}
+	}
+	
+	public void mostrarLibrosPorGenero () {
+		for (int i = 0; i < this.generos.size(); i++) {
 			System.out.println("//Genero// " + this.generos.elementAt(i).getGenero());
 			this.generos.elementAt(i).mostrarLibros();
 		}
