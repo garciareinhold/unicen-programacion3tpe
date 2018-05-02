@@ -7,52 +7,43 @@ public class Herramienta {
 	private CSVReader reader;
 	private CSVWritter writter;
 	private Indice indice;
-	ArrayList <Libro> coleccion;
-	
+	ArrayList<Libro> coleccion;
+
 	public Herramienta() {
-		this.reader= new CSVReader();
-		this.writter= new CSVWritter();
-	}
-	
-	public void setColeccion(String path) {
-		//Genero un arraylist de libros con la lectura del path
-		this.coleccion= reader.ReadCsv(path);
+		this.reader = new CSVReader();
+		this.writter = new CSVWritter();
 	}
 
+	public void setColeccion(String path) {
+		// Genero un arraylist de libros con la lectura del path
+		this.coleccion = reader.ReadCsv(path);
+	}
 
 	public void setSalida(String path) {
-		//Seteo el archivo de salida del writter
+		// Seteo el archivo de salida del writter
 		this.writter.setPath(path);
 	}
-	
 
-	
-	public void generarIndice() {
-		//Seteo el primer nodo del árbol
-		
+	public int generarIndice() {
+		// Seteo el primer nodo del árbol
+		int comparaciones = 0;
 		this.indice = new Indice();
-		//Recorro todos los libros de la coleccion
-		for(int i=0; i<coleccion.size(); i++) {
-			//Por cada libro tomo su arreglo de generos
-			String [] generos= coleccion.get(i).getGeneros();
-			//Recorro todos sus generos
-			for (int j=0; j<generos.length; j++) {
-
+		// Recorro todos los libros de la coleccion
+		for (int i = 0; i < coleccion.size(); i++) {
+			// Por cada libro tomo su arreglo de generos
+			String[] generos = coleccion.get(i).getGeneros();
+			// Recorro todos sus generos
+			for (int j = 0; j < generos.length; j++) {
 				Comparable gen = generos[j];
-		
-				
-				this.indice.setGenero(gen, coleccion.get(i));
-				
-	
-
+				comparaciones = comparaciones + this.indice.setGenero(gen, coleccion.get(i));
 			}
-			
+
 		}
+		return comparaciones;
 	}
-	
-	public void mostrarIndice () {
+
+	public void mostrarIndice() {
 		this.indice.mostrarIndice();
 	}
-	
 
 }
