@@ -46,7 +46,7 @@ public class Herramienta {
 			
 			for (int j=0; j<generos.length; j++) {
 				//Me fijo en el árbol de indice si tiene el genero 
-				NodoArbol aux= indice.hasElem(generos[j]);
+				NodoArbol aux= indice.getElem(generos[j]);
 				if(aux==null) {
 					indice.insert(generos[j],libro );
 				}
@@ -59,7 +59,8 @@ public class Herramienta {
 	
 	public void VerLibrosXGenero(String generoBusqueda) {
 		//Me fijo si el genero que me piden existe, si es así genero el archivo de salida
-		NodoArbol genero= indice.hasElem(generoBusqueda);
+		NodoArbol genero= indice.getElem(generoBusqueda);
 		if (genero!=null) writter.generarCSV(genero.getLibros());
+		else System.out.println("No se encuentra tal género");
 	}
 }

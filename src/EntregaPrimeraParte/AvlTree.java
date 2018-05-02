@@ -34,18 +34,18 @@ public class AvlTree {
 	}
 
 
-	public NodoAvl hasElem(Comparable o) {
-		if(!this.isEmpty()) return hasElem(this.root, o);
+	public NodoAvl getElem(Comparable o) {
+		if(!this.isEmpty()) return getElem(this.root, o);
 		else return null;
 	}
 
-	private NodoAvl hasElem(NodoAvl rootAux, Comparable o) {
+	private NodoAvl getElem(NodoAvl rootAux, Comparable o) {
 		this.nodosVisitados++;
 		if (rootAux!=null) {
 			int compare= rootAux.getInfo().compareTo(o);
 			if(compare==0) return rootAux;
-			else if (compare<0) return hasElem(rootAux.getRight(), o);
-			else return hasElem(rootAux.getLeft(), o);
+			else if (compare<0) return getElem(rootAux.getRight(), o);
+			else return getElem(rootAux.getLeft(), o);
 		}
 		else return null;
 	}
