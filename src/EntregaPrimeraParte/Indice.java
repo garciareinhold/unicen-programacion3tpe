@@ -12,7 +12,7 @@ public class Indice {
 		this.generos = new Vector<NodoIndice>();
 	}
 
-	public int setGenero(Comparable genero, Libro libro) {
+	public int agregarLibroPorGenero(Comparable genero, Libro libro) {
 		int comparaciones = 0;
 		NodoIndice nodo = new NodoIndice(genero);
 		if (this.generos.size() == 0) {
@@ -25,14 +25,14 @@ public class Indice {
 				this.generos.add(nodo);
 			}
 		} else {
-			comparaciones = comparaciones + agregarGeneroOrdenado(this.generos, nodo, libro);
+			comparaciones = comparaciones + agregarLibroGenero(this.generos, nodo, libro);
 		}
 
 		return comparaciones;
 
 	}
 
-	public int agregarGeneroOrdenado(Vector<NodoIndice> arreglo, NodoIndice dato, Libro libro) {
+	public int agregarLibroGenero(Vector<NodoIndice> arreglo, NodoIndice dato, Libro libro) {
 
 		int izquierda = 0;
 		int derecha = arreglo.size() - 1;

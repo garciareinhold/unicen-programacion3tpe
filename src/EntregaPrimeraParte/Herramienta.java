@@ -35,7 +35,7 @@ public class Herramienta {
 			// Recorro todos sus generos
 			for (int j = 0; j < generos.length; j++) {
 				Comparable gen = generos[j];	
-				comparaciones = comparaciones + this.indice.setGenero(gen, coleccion.get(i));
+				comparaciones = comparaciones + this.indice.agregarLibroPorGenero(gen, coleccion.get(i));
 			}
 
 		}
