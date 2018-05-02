@@ -5,11 +5,21 @@ public class AvlTree {
 	
 	NodoAvl root;
 	int height;
+	private int nodosVisitados;
 
 
 	public AvlTree(Comparable o) {
 
 		this.root= new NodoAvl(o);
+		this.nodosVisitados=0;
+	}
+	
+	public void resetNodosVisitados() {
+		this.nodosVisitados=0;
+	}
+	
+	public int getNodosVisitados() {
+		return this.nodosVisitados;
 	}
 
 	public boolean isEmpty() {
@@ -30,6 +40,7 @@ public class AvlTree {
 	}
 
 	private NodoAvl hasElem(NodoAvl rootAux, Comparable o) {
+		this.nodosVisitados++;
 		if (rootAux!=null) {
 			int compare= rootAux.getInfo().compareTo(o);
 			if(compare==0) return rootAux;
@@ -44,6 +55,7 @@ public class AvlTree {
 	}
 
 	private NodoAvl insert(Comparable o, NodoAvl nodo, Libro l) {
+		this.nodosVisitados++;
 		if(nodo==null) {
 			nodo= new NodoAvl(o);
 			nodo.setLibro(l);

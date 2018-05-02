@@ -11,6 +11,7 @@ public class NodoAvl {
 	int height;
 	NodoAvl father;
 	
+	
 	public NodoAvl(Comparable o) {
 		info=o;
 		left=null;

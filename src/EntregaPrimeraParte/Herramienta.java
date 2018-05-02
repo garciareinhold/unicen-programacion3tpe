@@ -7,7 +7,7 @@ public class Herramienta {
 
 	private CSVReader reader;
 	private CSVWritter writter;
-	private AvlTree indice;
+	private Abb indice;
 	LinkedList <Libro> coleccion;
 	
 	public Herramienta() {
@@ -26,13 +26,17 @@ public class Herramienta {
 		this.writter.setPath(path);
 	}
 	
-	public AvlTree getIndice() {
+	public Abb getIndice() {
 		return this.indice;
+	}
+	
+	public int getNodosVisitados() {
+		return this.indice.getNodosVisitados();
 	}
 	
 	public void generarIndice() {
 		//Seteo el primer nodo del árbol
-		this.indice= new AvlTree(coleccion.getFirst().getGeneros()[0]);
+		this.indice= new Abb(coleccion.getFirst().getGeneros()[0]);
 		//Recorro todos los libros de la coleccion
 		Iterator<Libro> itBooks= coleccion.iterator();
 		while (itBooks.hasNext()) {
@@ -42,7 +46,7 @@ public class Herramienta {
 			
 			for (int j=0; j<generos.length; j++) {
 				//Me fijo en el árbol de indice si tiene el genero 
-				NodoAvl aux= indice.hasElem(generos[j]);
+				NodoArbol aux= indice.hasElem(generos[j]);
 				if(aux==null) {
 					indice.insert(generos[j],libro );
 				}
@@ -55,7 +59,7 @@ public class Herramienta {
 	
 	public void VerLibrosXGenero(String generoBusqueda) {
 		//Me fijo si el genero que me piden existe, si es así genero el archivo de salida
-		NodoAvl genero= indice.hasElem(generoBusqueda);
+		NodoArbol genero= indice.hasElem(generoBusqueda);
 		if (genero!=null) writter.generarCSV(genero.getLibros());
 	}
 }

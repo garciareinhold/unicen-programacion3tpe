@@ -6,12 +6,13 @@ import java.util.List;
 public class Abb{
 
 	NodoArbol root;
-	int height;
+	private int nodosVisitados;
 
 
 	public Abb(Comparable o) {
 
 		this.root= new NodoArbol(o);
+		this.nodosVisitados=0;
 	}
 
 	public boolean isEmpty() {
@@ -32,6 +33,7 @@ public class Abb{
 	}
 
 	private NodoArbol hasElem(NodoArbol rootAux, Comparable o) {
+		this.nodosVisitados++;
 		if (rootAux!=null) {
 			int compare= rootAux.getInfo().compareTo(o);
 			if(compare==0) return rootAux;
@@ -40,12 +42,21 @@ public class Abb{
 		}
 		else return null;
 	}
+	
+	public int getNodosVisitados() {
+		return this.nodosVisitados;
+	}
+	
+	public void resetNodosVisitados() {
+		this.nodosVisitados=0;
+	}
 
 	public void insert(Comparable o, Libro l) {
 		this.root= insert(o, root, l);
 	}
 
 	private NodoArbol insert(Comparable o, NodoArbol nodo, Libro l) {
+		this.nodosVisitados++;
 		if(nodo==null) {
 			nodo= new NodoArbol(o);
 			nodo.setLibro(l);
@@ -56,7 +67,6 @@ public class Abb{
 		else if(nodo.getInfo().compareTo(o)<0) {
 			nodo.setRight(insert(o, nodo.getRight(), l));
 		}
-		else;
 		
 		return nodo;
 	}
