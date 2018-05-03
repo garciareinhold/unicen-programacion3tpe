@@ -10,7 +10,7 @@ public class Test {
 		Herramienta tool= new Herramienta();
 		Timer t= new Timer();
 		t.start();
-		tool.setColeccion("C:/datasets/dataset4.csv");
+		tool.setColeccion("C:/datasets/dataset1.csv");
 		System.out.println(t.stop());
 		Timer s= new Timer();
 		s.start();

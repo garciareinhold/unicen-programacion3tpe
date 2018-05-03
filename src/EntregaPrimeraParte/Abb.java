@@ -126,7 +126,7 @@ public class Abb{
 
 	private void printPreOrder(NodoArbol root) {
 		if(root != null) {
-			System.out.print(root.getInfo() + "  ");
+			System.out.print(root.getInfo().getNombre() + "  ");
 			printPreOrder(root.getLeft());
 			printPreOrder(root.getRight());
 		}
