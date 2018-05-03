@@ -1,12 +1,51 @@
 package EntregaPrimeraParte;
-
 import java.util.ArrayList;
-import java.util.List;
+import java.util.LinkedList;
 
 
 public class Abb{
+	
+	private class NodoArbol {
+		
+		private Genero info;
+		private NodoArbol left;
+		private NodoArbol right;
+		
+		private NodoArbol(Comparable o) {
+			info= new Genero(o);
+			left=null;
+			right=null;
+		}
+		
+		private NodoArbol() {
+			info=null;
+			left=null;
+			right=null;
+		}
+		
+		protected Genero getInfo() {
+			return this.info;
+		}
+		
+		protected NodoArbol getLeft() {
+			return this.left;
+		}
+		
+		protected NodoArbol getRight() {
+			return this.right;
+		}
+		
+		protected void setLeft(NodoArbol left) {
+			this.left=left;
+		}
+		
+		protected void setRight(NodoArbol right) {
+			this.right=right;
+		}
+		
+	}
 
-	NodoArbol root;
+	private NodoArbol root;
 	private int nodosVisitados;
 
 
@@ -20,24 +59,16 @@ public class Abb{
 		return (root==null);
 	}
 
-	public Comparable getRoot() {
-		if (this.isEmpty()) {
-			return null;
-		}
-		else return this.root.getInfo();
-	}
-
-
-	public NodoArbol getElem(Comparable o) {
+	public Genero getElem(Comparable o) {
 		if(!this.isEmpty()) return getElem(this.root, o);
 		else return null;
 	}
 
-	private NodoArbol getElem(NodoArbol rootAux, Comparable o) {
+	private Genero getElem(NodoArbol rootAux, Comparable o) {
 		this.nodosVisitados++;
 		if (rootAux!=null) {
-			int compare= rootAux.getInfo().compareTo(o);
-			if(compare==0) return rootAux;
+			int compare= rootAux.getInfo().getNombre().compareTo(o);
+			if(compare==0) return rootAux.getInfo();
 			else if (compare<0) return getElem(rootAux.getRight(), o);
 			else return getElem(rootAux.getLeft(), o);
 		}
@@ -58,7 +89,7 @@ public class Abb{
 		}
 		else{
 			 this.root= new NodoArbol (o);
-			 root.setLibro(l);
+			 root.getInfo().agregarLibro(l);
 			 this.nodosVisitados++;
 		}
 		
@@ -66,24 +97,24 @@ public class Abb{
 
 	private void insert(Comparable o, NodoArbol nodo, Libro l) {
 		this.nodosVisitados++;
-		if(nodo.getInfo().compareTo(o)>0) {
+		if(nodo.getInfo().getNombre().compareTo(o)>0) {
 			if(nodo.getLeft()!=null){
 				this.insert(o, nodo.getLeft(), l);
 			}
 			else{
 				NodoArbol nuevo= new NodoArbol(o);
 				nodo.setLeft(nuevo);
-				nuevo.setLibro(l);
+				nuevo.getInfo().agregarLibro(l);
 			}
 		}
-		else if(nodo.getInfo().compareTo(o)<0) {
+		else if(nodo.getInfo().getNombre().compareTo(o)<0) {
 			if(nodo.getRight()!=null){
 				this.insert(o, nodo.getRight(), l);
   			}
 			else{
 				NodoArbol nuevo= new NodoArbol(o);
 				nodo.setRight(nuevo);
-				nuevo.setLibro(l);
+				nuevo.getInfo().agregarLibro(l);
 			}
 		}
 		
