@@ -7,7 +7,7 @@ public class Test {
 	public static void main(String[] args) {
 
 		
-		Herramienta tool= new Herramienta();
+		BookFinder tool= new BookFinder();
 		Timer t= new Timer();
 		t.start();
 		tool.setColeccion("C:/datasets/dataset1.csv");

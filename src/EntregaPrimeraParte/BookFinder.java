@@ -3,14 +3,14 @@ package EntregaPrimeraParte;
 import java.util.Iterator;
 import java.util.LinkedList;
 
-public class Herramienta {
+public class BookFinder {
 
 	private CSVReader reader;
 	private CSVWritter writter;
 	private Abb indice;
 	LinkedList <Libro> coleccion;
 	
-	public Herramienta() {
+	public BookFinder() {
 		this.reader= new CSVReader();
 		this.writter= new CSVWritter();
 	}
