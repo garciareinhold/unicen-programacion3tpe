@@ -84,13 +84,14 @@ public class Abb{
 	}
 
 	public void insert(Comparable o, Libro l) {
-		if (this.root!=null) {
-			this.insert(o, root, l);
+		//Si el árbol esta vacio, seteo el root y le agrego su libro, además de registrar la visita al primer nodo
+		if (this.isEmpty()) {
+			this.root= new NodoArbol (o);
+			root.getInfo().agregarLibro(l);
+			this.nodosVisitados++;
 		}
 		else{
-			 this.root= new NodoArbol (o);
-			 root.getInfo().agregarLibro(l);
-			 this.nodosVisitados++;
+				this.insert(o, root, l);
 		}
 		
 	}

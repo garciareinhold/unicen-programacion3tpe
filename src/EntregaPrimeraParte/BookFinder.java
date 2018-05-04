@@ -13,6 +13,8 @@ public class BookFinder {
 	public BookFinder() {
 		this.reader= new CSVReader();
 		this.writter= new CSVWritter();
+		this.indice=null;
+		this.coleccion= null;
 	}
 	
 	public void setColeccion(String path) {
@@ -26,16 +28,12 @@ public class BookFinder {
 		this.writter.setPath(path);
 	}
 	
-	public Abb getIndice() {
-		return this.indice;
-	}
-	
 	public int getNodosVisitados() {
 		return this.indice.getNodosVisitados();
 	}
-	
+		
 	public void generarIndice() {
-		//Seteo el primer nodo del árbol
+		//Seteo el root del árbol
 		this.indice= new Abb(coleccion.getFirst().getGeneros()[0]);
 		//Recorro todos los libros de la coleccion
 		Iterator<Libro> itBooks= coleccion.iterator();
@@ -45,7 +43,7 @@ public class BookFinder {
 			String [] generos=libro.getGeneros();
 			
 			for (int j=0; j<generos.length; j++) {
-				//Me fijo en el árbol de indice si tiene el genero 
+				//Me fijo en el árbol de indice si tiene el genero en generos[j], si lo tiene le agrego el libro, sino lo inserto
 				Genero aux= indice.getElem(generos[j]);
 				if(aux==null) {
 					indice.insert(generos[j],libro );
@@ -56,10 +54,15 @@ public class BookFinder {
 		}
 	}
 	
-	public void VerLibrosXGenero(String generoBusqueda) {
+	public void verLibrosGenero(String generoBusqueda) {
+		this.indice.resetNodosVisitados();
 		//Me fijo si el genero que me piden existe, si es así genero el archivo de salida
 		Genero genero= indice.getElem(generoBusqueda);
 		if (genero!=null) writter.generarCSV(genero.getLibros());
 		else System.out.println("No se encuentra tal género");
+	}
+
+	public void imprimirGeneros() {
+		this.indice.printPreOrder();
 	}
 }
